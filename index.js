@@ -1,11 +1,12 @@
+var path = require('path');
 var express = require('express');
 var app = express();
-var MySqlClient = require('./mysql');
+//var MySqlClient = require('./mysql');
 
-var dbClient = new MySqlClient().getConnection();
+//var dbClient = new MySqlClient().getConnection();
 
 app.get('/', function (req, res) {
-  res.sendFile('/var/www/myapp/html/index.html');
+  res.sendFile(path.resolve('html/index.html'));
 });
 
 app.get('/admin-api/sql/:query', function(req, res) {

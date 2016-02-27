@@ -4,7 +4,7 @@ function MySqlClient() {
 	this.connection = mysql.createConnection({
   		host     : 'localhost',
  		user     : 'me',
- 		password : 'secret', 
+ 		password : 'secret',
 	  	database : 'my_db'
 	});
 	this.connection.connect();

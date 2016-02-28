@@ -9,7 +9,10 @@
   "author": "",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "express": "~4.13.4",
+    "bluebird": "^3.3.3",
+    "body-parser": "*",
+    "express": "*",
+    "mongodb": "^2.1.7",
     "mysql": "~2.10.2"
   }
 }

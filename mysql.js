@@ -1,21 +1,14 @@
-var mysql      = require('mysql');
+var Promise = require('bluebird');
+var MongoClient = Promise.promisifyAll(require('mongodb').MongoClient);
 
-function MySqlClient() {
-	this.connection = mysql.createConnection({
-  		host     : 'localhost',
- 		user     : 'me',
- 		password : 'secret', 
-	  	database : 'my_db'
-	});
-	this.connection.connect();
+function MyMongoClient() {
+    return MongoClient.connectAsync('mongodb://ec2-54-191-135-136.us-west-2.compute.amazonaws.com:27017/FitBuddyDB').then(function(database) {
+      console.log(database, "DB CONNECT WORKED");
+      return Promise.resolve(database);
+    }).catch(function(err) {
+      console.log(err, "ERROR");
+      return Promise.reject(new Error(err));
+    });
 }
 
-MySqlClient.prototype.getConnection = function (query, cb) {
-	return this.connection;
-}
-
-MySqlClient.prototype.endConnection = function(first_argument) {
-	this.connection.end();
-};
-
-module.exports = MySqlClient;
+module.exports = MyMongoClient;
